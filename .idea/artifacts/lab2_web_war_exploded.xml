@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="lab2-web:war exploded">
+    <output-path>$PROJECT_DIR$/lab2-web/target/lab2-web-1.0</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="lab2-web/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="lab2-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.11" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.11" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.11" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -73,7 +73,7 @@ public class StudentResource {
 
     @GET
     @Path("getpng")
-    @Produces("application/pdf")
+    @Produces("application/png")
     public Response getPng() {
 
         File file = new File(PATH_PNG);
