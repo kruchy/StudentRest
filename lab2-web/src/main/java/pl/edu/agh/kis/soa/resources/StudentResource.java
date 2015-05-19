@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import pl.edu.agh.kis.soa.resources.model.Student;
-import sun.net.www.http.HttpClient;
 
 /**
  * Klasa wystawiająca interfejs REST.
@@ -85,4 +87,20 @@ public class StudentResource {
 
     }
 
+    @POST
+    @Path("authorize")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response authorize(@QueryParam("login") String login, @QueryParam("password") String password ,@Context HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        if(session == null)
+        {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        if(password.equals("pass"))
+        {
+            beHappy();
+        }
+        return Response.status(Response.Status.FORBIDDEN).build();
+    }
 }

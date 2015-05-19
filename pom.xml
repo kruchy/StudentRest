@@ -31,6 +31,7 @@
    <dependencyManagement>
       <dependencies>
 
+
          <!-- Define the version of the EJB jar so that we don't need to 
             repeat ourselves in every module -->
          <dependency>

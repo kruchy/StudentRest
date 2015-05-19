@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0baba978-ea34-4211-933e-55c30a5ea35d" name="Default" comment="" />
+    <list default="true" id="0baba978-ea34-4211-933e-55c30a5ea35d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_ejb_jboss_ejb_api_3_1_spec_1_0_1_Final.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/resources/StudentResource.java" afterPath="$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/resources/StudentResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab2-web/lab2-web.iml" afterPath="$PROJECT_DIR$/lab2-web/lab2-web.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/lab2_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/lab2_web_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lab2-web/pom.xml" afterPath="$PROJECT_DIR$/lab2-web/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="lab2.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$PROJECT_DIR$/lab2-web/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432017085205" ignored="false" />
@@ -14,7 +23,9 @@
     <file path="$PROJECT_DIR$/lab2-web/src/main/webapp/WEB-INF/faces-config.xml" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432017085205" ignored="false" />
     <file path="$PROJECT_DIR$/lab2-ear/.settings/org.eclipse.wst.common.project.facet.core.xml" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432017085205" ignored="false" />
     <file path="$PROJECT_DIR$/lab2-web/src/main/webapp/WEB-INF/beans.xml" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432017085205" ignored="false" />
-    <file path="/StudentResource.java" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432022943458" ignored="false" />
+    <file path="/StudentResource.java" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432025501305" ignored="false" />
+    <file path="/Dummy.txt" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432024638161" ignored="false" />
+    <file path="/pom.xml" changelist="0baba978-ea34-4211-933e-55c30a5ea35d" time="1432025253553" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +89,7 @@
       <file leaf-file-name="StudentResource.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/resources/StudentResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="30" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.7012579">
+            <state line="101" column="22" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.827044">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,6 +101,24 @@
         <entry file="file://$PROJECT_DIR$/lab2-ejb/src/main/java/pl/edu/agh/kis/soa/HelloWorld.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="21" column="13" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="10" selection-start="1336" selection-end="1336" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab2-web/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="20" selection-start="1689" selection-end="1689" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -120,10 +149,20 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/rest/Lab2RestApplication.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/lab2-web/pom.xml" />
         <option value="$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/resources/StudentResource.java" />
       </list>
     </option>
@@ -139,7 +178,7 @@
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -148,7 +187,7 @@
     <OptionsSetting value="true" id="Edit" />
     <OptionsSetting value="true" id="Undo Check Out" />
     <OptionsSetting value="true" id="Get Latest Version" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -190,6 +229,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lab2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lab2-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lab2-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -197,15 +250,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="true" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -306,6 +363,23 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0baba978-ea34-4211-933e-55c30a5ea35d" name="Default" comment="" />
@@ -461,9 +535,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="10" selection-start="1336" selection-end="1336" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab2-web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="20" selection-start="1689" selection-end="1689" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lab2-web/src/main/java/pl/edu/agh/kis/soa/resources/StudentResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="30" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.7012579">
+        <state line="101" column="22" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.827044">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
