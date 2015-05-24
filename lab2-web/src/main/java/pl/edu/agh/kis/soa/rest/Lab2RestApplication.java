@@ -1,12 +1,11 @@
 package pl.edu.agh.kis.soa.rest;
 
-import java.util.HashSet;
-import java.util.Set;
+import pl.edu.agh.kis.soa.resources.StudentResource;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-
-import pl.edu.agh.kis.soa.resources.StudentResource;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -14,7 +13,7 @@ import pl.edu.agh.kis.soa.resources.StudentResource;
  * @author teacher
  *
  */
-//@ApplicationPath("/")
+@ApplicationPath("/")
 public class Lab2RestApplication extends Application {
 
 	/**

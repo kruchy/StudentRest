@@ -15,10 +15,43 @@
    <name>lab2 EJB module</name>
 
    <dependencies>
-		<!-- 
-			byte[] Base64.encodeBase64(byte [])
-			byte[] Base64.decodeBase64(byte []) 
-		 -->
+
+      <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>2.4</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.annotation</groupId>
+         <artifactId>javax.annotation-api</artifactId>
+         <version>1.2</version>
+      </dependency>
+
+
+      <dependency>
+         <groupId>org.jboss.ws</groupId>
+         <artifactId>jbossws-api</artifactId>
+         <scope>provided</scope>
+         <version>1.0.1.Final</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.ejb3</groupId>
+         <artifactId>jboss-ejb3-ext-api</artifactId>
+         <scope>provided</scope>
+         <version>2.0.0</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <scope>provided</scope>
+         <version>1.0.2.Final</version>
+      </dependency>
+      <!--
+          byte[] Base64.encodeBase64(byte [])
+          byte[] Base64.decodeBase64(byte [])
+       -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>

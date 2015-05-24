@@ -3,13 +3,18 @@
     <output-path>$PROJECT_DIR$/lab2-ear/target/lab2</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="lab2-ear/javaeeApplication/JavaEE" />
-      <element id="directory" name="lab2-web-1.0.war">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/lab2-ear/target/MANIFEST.MF" />
+      </element>
+      <element id="archive" name="lab2-web-1.0.war">
         <element id="artifact" artifact-name="lab2-web:war exploded" />
       </element>
-      <element id="directory" name="lab2-ejb-1.0.jar">
+      <element id="archive" name="lab2-ejb-1.0.jar">
         <element id="artifact" artifact-name="lab2-ejb:ejb exploded" />
       </element>
       <element id="directory" name="lib">
+        <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
+        <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.2" />
         <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.8" />
       </element>
     </root>
