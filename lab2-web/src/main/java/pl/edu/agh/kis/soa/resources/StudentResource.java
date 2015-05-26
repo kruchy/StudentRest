@@ -63,8 +63,12 @@ public class StudentResource {
 
     private boolean verifyPassword(String login,String pass)
     {
-        return pass.equals("haslo");
+        return pass != null && pass.equals("haslo");
+
     }
+
+
+
 	@GET
 	@Path("get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -147,27 +151,33 @@ public class StudentResource {
     }
 
 
+    class Auth
+    {
+        String login;
+        String password;
+    }
+
 
     @POST
     @Path("authorize")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response authorize(@QueryParam("login")String login, @QueryParam("password")String password ,@Context HttpServletRequest request)
+    public Response authorize( Auth auth ,@Context HttpServletRequest request)
     {
         HttpSession session = request.getSession();
         if(session == null)
         {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
-        if(verifyPassword(login, password))
+        if(verifyPassword(auth.login, auth.password))
         {
-            session.setAttribute("user_login",login);
+            session.setAttribute("user_login",auth.login);
             return Response.ok(true, MediaType.APPLICATION_JSON).build();
         }
         else
         {
             session.setAttribute("user_login",null);
-            return Response.ok(login + " " + password,MediaType.APPLICATION_JSON).build();
+            return Response.ok(auth.login + " " + auth.password,MediaType.APPLICATION_JSON).build();
         }
     }
 
