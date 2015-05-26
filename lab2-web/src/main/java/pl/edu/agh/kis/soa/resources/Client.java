@@ -6,6 +6,7 @@ import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import pl.edu.agh.kis.soa.resources.model.Student;
 
+import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -14,7 +15,28 @@ import java.io.InputStreamReader;
 /**
  * Created by krzysiek on 5/24/15.
  */
+
+class HttpException extends Exception
+{
+
+    private String m ;
+    public HttpException(String msg)
+    {
+        m = msg;
+    }
+    public void printError()
+    {
+        System.out.println(m);
+    }
+
+
+}
+
+
+
 public class Client {
+
+
     public static void main(String[] args) {
         try {
 
@@ -33,26 +55,39 @@ public class Client {
             s.setAlbumNo("6");
             s.setFirstName("Krzysiek");
             s.setLastName("Misiak");
-            request.body("application/json",gson.toJson(s).toString());
+            request.body("application/json", gson.toJson(s).toString());
             response = request.post(String.class);
+            handleError(response);
             printResponse(response);
 
 
             request = new ClientRequest("http://localhost:8080/lab2-web/rest/authorize");
             request.accept("application/json");
             JsonObject json = new JsonObject();
-            json.addProperty("login", "login");
-            json.addProperty("password","haslo");
-
+            request.queryParameter("login", "login");
+            request.queryParameter("password", "haslo");
 //            System.out.println(json.toString());
-            request.body("application/json",json.toString());
+//            request.body("application/json","login=login&password=haslo");
             response = request.post(String.class);
+
+            handleError(response);
             printResponse(response);
 
+            request = new ClientRequest("http://localhost:8080/lab2-web/rest/hello");
+            request.queryParameter("id","5");
+            response = request.get(String.class);
+
+            handleError(response);
+            printResponse(response);
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (Exception e) {
+        }catch (HttpException e)
+        {
+            e.printError();
+        }
+
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -68,6 +103,10 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void handleError(ClientResponse<String> response) throws HttpException {
+                if(response.getResponseStatus() != Response.Status.OK ) throw new HttpException(response.getResponseStatus().getReasonPhrase());
     }
 
 }
