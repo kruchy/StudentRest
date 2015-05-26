@@ -22,7 +22,6 @@ import java.util.List;
 public class Client {
     public static void main(String[] args) {
         try {
-            BufferedReader rd;
             org.apache.http.client.HttpClient client = new DefaultHttpClient();
             HttpGet getStudentRequest = new HttpGet("http://localhost:8080/lab2-web/rest/get/5");
             HttpResponse response = null;
@@ -45,17 +44,17 @@ public class Client {
             response = client.execute(post);
             printResponse(response);
 
-
-
-            post = new HttpPost("http://localhost:8080//lab2-web/rest/authorize");
+            post = new HttpPost("http://localhost:8080/lab2-web/rest/authorize");
             List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-            params.add(new BasicNameValuePair("parameter1","login"));
-            params.add(new BasicNameValuePair("parameter2","haslo"));
-            se = new StringEntity(gson.toJson(params));
+            params.add(new BasicNameValuePair("login","login"));
+            params.add(new BasicNameValuePair("password", "haslo"));
             se.setContentType("application/json");
+            se = new StringEntity(gson.toJson(params));
             post.setEntity(se);
             response = client.execute(post);
             printResponse(response);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -152,7 +152,7 @@ public class StudentResource {
     @Path("authorize")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response authorize(@QueryParam("login") String login, @QueryParam("password") String password ,@Context HttpServletRequest request)
+    public Response authorize(@QueryParam("login")String login, @QueryParam("password")String password ,@Context HttpServletRequest request)
     {
         HttpSession session = request.getSession();
         if(session == null)
@@ -167,7 +167,7 @@ public class StudentResource {
         else
         {
             session.setAttribute("user_login",null);
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response.ok(login + " " + password,MediaType.APPLICATION_JSON).build();
         }
     }
 
