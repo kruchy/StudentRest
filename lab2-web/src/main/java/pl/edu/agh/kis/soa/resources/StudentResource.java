@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,7 +26,7 @@ public class StudentResource {
 	private static final Logger logger = Logger.getLogger("StudentResource");
 	private static final String PATH_PDF = "/home/krzysiek/rest.pdf";
     private static final String PATH_PNG = "/home/krzysiek/test.png";
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private static ArrayList<Student> students = new ArrayList<Student>();
     public StudentResource()
     {
         Student s = new Student();
@@ -53,7 +52,7 @@ public class StudentResource {
     {
         for(Student s:students)
         {
-            if(s.getAlbumNo() == albumNo)
+            if(s.getAlbumNo().equals(albumNo))
             {
                 students.remove(s);
                 return true;
@@ -62,6 +61,10 @@ public class StudentResource {
         return false;
     }
 
+    private boolean verifyPassword(String login,String pass)
+    {
+        return pass.equals("haslo");
+    }
 	@GET
 	@Path("get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -81,45 +84,37 @@ public class StudentResource {
     @POST
     @Path("setStudent")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response setStudent(@QueryParam("id") String albumNo, @QueryParam("name")String firstName,@QueryParam("lastName") String lastName)
+    public Response setStudent(Student student)//@QueryParam("id") String albumNo, @QueryParam("name")String firstName,@QueryParam("lastName") String lastName)
     {
-
-        Student s =  new Student();
-        s.setFirstName(firstName);
-        s.setLastName(lastName);
-        s.setAlbumNo(albumNo);
-        students.add(s);
-        return Response.ok(s,MediaType.APPLICATION_JSON).build();
+        if(students.add(student) ) return Response.ok(true, MediaType.APPLICATION_JSON).build();
+        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
     @PUT
-    @Path("upStudent")
+    @Path("delStudent")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response delStudent(@QueryParam("id") String albumNo,@QueryParam("name") String firstName,@QueryParam("lastName") String lastName, @QueryParam("subjects") String[] subjects )
+    public Response delStudent(Student student) //@QueryParam("id") String albumNo,@QueryParam("name") String firstName,@QueryParam("lastName") String lastName, @QueryParam("subjects") String[] subjects )
     {
-        Student s = getS(albumNo);
-        if(!s.getFirstName().equals(firstName)) s.setFirstName(firstName);
-        if(!s.getLastName().equals(lastName))s.setLastName(lastName);
-        s.setSubjects(Arrays.asList(subjects));
-        return Response.ok().build();
+        Student s = getS(student.getAlbumNo());
+        if(students.remove(s)) return Response.ok(true,MediaType.APPLICATION_JSON).build();
+        else return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @POST
     @Path("addStudent")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addStudent(@QueryParam("id") String albumNo,@QueryParam("name") String firstName,@QueryParam("lastName") String lastName, @QueryParam("subjects") String[] subjects )
+    public Response addStudent(Student student)//@QueryParam("id") String albumNo,@QueryParam("firstName")String firstName, @QueryParam("lastName")String lastName) //, @QueryParam("subjects") String[] subjects )
     {
-        if(getS(albumNo) != null) {
+        if(getS(student.getAlbumNo()) != null) {
             return Response.ok("Student already exists", MediaType.APPLICATION_JSON).build();
         }
-        Student s = new Student();
-        s.setAlbumNo(albumNo);
-        s.setFirstName(firstName);
-        s.setLastName(lastName);
-        s.setSubjects(Arrays.asList(subjects));
-        return Response.ok().build();
-    }
+        students.add(student);
+        return Response.ok(student,MediaType.APPLICATION_JSON).build();
+//        s.setSubjects(Arrays.asList(subjects));
+//        if(students.add(s)) return Response.ok(Response.Status.CREATED).build();
+//        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+       }
 
 
 
@@ -151,13 +146,11 @@ public class StudentResource {
 
     }
 
-    private boolean verifyPassword(String login,String pass)
-    {
-        return pass.equals("haslo");
-    }
+
 
     @POST
     @Path("authorize")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response authorize(@QueryParam("login") String login, @QueryParam("password") String password ,@Context HttpServletRequest request)
     {
@@ -169,7 +162,7 @@ public class StudentResource {
         if(verifyPassword(login, password))
         {
             session.setAttribute("user_login",login);
-            return Response.ok().build();
+            return Response.ok(true, MediaType.APPLICATION_JSON).build();
         }
         else
         {
