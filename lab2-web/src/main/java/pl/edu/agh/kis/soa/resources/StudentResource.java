@@ -166,16 +166,17 @@ public class StudentResource {
         }
         if(verifyPassword(login, password))
         {
+            session.setAttribute("user_login",login);
             return Response.ok(true, MediaType.APPLICATION_JSON).build();
         }
         else
         {
             session.setAttribute("user_login",null);
-            return Response.ok(login + " " + password,MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
 
-    @GET
+    @POST
     @Path("hello")
     @Produces(MediaType.APPLICATION_JSON)
     public Response hello(@QueryParam("id") String id, @Context HttpServletRequest request)

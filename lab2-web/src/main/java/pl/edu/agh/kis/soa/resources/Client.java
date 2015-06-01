@@ -1,7 +1,6 @@
 package pl.edu.agh.kis.soa.resources;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import pl.edu.agh.kis.soa.resources.model.Student;
@@ -60,10 +59,8 @@ public class Client {
             handleError(response);
             printResponse(response);
 
-
             request = new ClientRequest("http://localhost:8080/lab2-web/rest/authorize");
             request.accept("application/json");
-            JsonObject json = new JsonObject();
             request.queryParameter("login", "login");
             request.queryParameter("password", "haslo");
             response = request.post(String.class);
@@ -73,7 +70,7 @@ public class Client {
 
             request = new ClientRequest("http://localhost:8080/lab2-web/rest/hello");
             request.queryParameter("id","5");
-            response = request.get(String.class);
+            response = request.post(String.class);
 
             handleError(response);
             printResponse(response);
