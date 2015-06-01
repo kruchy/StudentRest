@@ -66,8 +66,6 @@ public class Client {
             JsonObject json = new JsonObject();
             request.queryParameter("login", "login");
             request.queryParameter("password", "haslo");
-//            System.out.println(json.toString());
-//            request.body("application/json","login=login&password=haslo");
             response = request.post(String.class);
 
             handleError(response);
