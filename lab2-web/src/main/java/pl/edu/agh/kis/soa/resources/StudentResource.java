@@ -1,7 +1,9 @@
 package pl.edu.agh.kis.soa.resources;
 
-import pl.edu.agh.kis.soa.resources.model.Student;
+import pl.edu.agh.kis.soa.Student;
+import pl.edu.agh.kis.soa.StudentDaoInt;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +12,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -23,43 +23,18 @@ import java.util.logging.Logger;
 @Stateless
 public class StudentResource {
 
+    @EJB
+    private StudentDaoInt studentDao;
 	private static final Logger logger = Logger.getLogger("StudentResource");
 	private static final String PATH_PDF = "/home/krzysiek/rest.pdf";
     private static final String PATH_PNG = "/home/krzysiek/test.png";
-    private static ArrayList<Student> students = new ArrayList<Student>();
     public StudentResource()
     {
-        Student s = new Student();
-        s.setAlbumNo("5");
-		s.setFirstName("Jan");
-		s.setLastName("Nowak");
-		List<String> subjects = new ArrayList<String>();
-		subjects.add("Bazy danych");
-		subjects.add("SOA");
-		s.setSubjects(subjects);
-        students.add(s);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("primary");
+//        em = emf.createEntityManager();
     }
 
-    private Student getS(String albumNo)
-    {
-        for(Student s:students)
-        {
-            if(s.getAlbumNo().equals(albumNo)) return s;
-        }
-        return null;
-    }
-    private boolean remS(String albumNo)
-    {
-        for(Student s:students)
-        {
-            if(s.getAlbumNo().equals(albumNo))
-            {
-                students.remove(s);
-                return true;
-            }
-        }
-        return false;
-    }
+
 
 
 
@@ -67,37 +42,49 @@ public class StudentResource {
 	@GET
 	@Path("get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getStudent(@PathParam("id") String albumNo) {
+	public Response getStudent(@PathParam("id") int albumNo) {
 
-        Student s = getS(albumNo);
-//		Student s = new Student();
-//
+//        Student s = getS(albumNo);
+		Student s;
+        s = studentDao.getStudent(albumNo);
         if(s != null) {
             return Response.ok(s,MediaType.APPLICATION_JSON).build();
         }
         else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
 	}
 
-    @POST
+    @GET
     @Path("setStudent")
     @Produces(MediaType.APPLICATION_JSON)
     public Response setStudent(Student student)//@QueryParam("id") String albumNo, @QueryParam("name")String firstName,@QueryParam("lastName") String lastName)
     {
-        if(students.add(student) ) return Response.ok(true, MediaType.APPLICATION_JSON).build();
-        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        Student s = new Student();
+        s.setFirstName("Krzysiek");
+        s.setLastName("Misiak");
+        studentDao.saveStudent(s);
+        return Response.ok(s, MediaType.APPLICATION_JSON).build();
+
+//        if(students.add(student) ) return Response.ok(true, MediaType.APPLICATION_JSON).build();
+//        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
-    @PUT
-    @Path("delStudent")
+    @GET
+    @Path("upStudent")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
     public Response delStudent(Student student) //@QueryParam("id") String albumNo,@QueryParam("name") String firstName,@QueryParam("lastName") String lastName, @QueryParam("subjects") String[] subjects )
     {
-        Student s = getS(student.getAlbumNo());
-        if(students.remove(s)) return Response.ok(true,MediaType.APPLICATION_JSON).build();
-        else return Response.status(Response.Status.BAD_REQUEST).build();
-    }
+        Student s = new Student();
+        s.setLastName("Skrobacz");
+        s.setFirstName("Adrian");
+        studentDao.updateStudent(5,s);
+//        Student s = getStudent(student.getAlbumNo());
+//        if (s == null) return Response.status(Response.Status.NOT_FOUND).build();
+//        if(students.remove(s)) return Response.ok(true,MediaType.APPLICATION_JSON).build();
+      return Response.status(Response.Status.GONE).build();
+//
+ }
 
     @POST
     @Path("addStudent")
@@ -105,10 +92,9 @@ public class StudentResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addStudent(Student student)//@QueryParam("id") String albumNo,@QueryParam("firstName")String firstName, @QueryParam("lastName")String lastName) //, @QueryParam("subjects") String[] subjects )
     {
-        if(getS(student.getAlbumNo()) != null) {
+        if(getStudent(student.getAlbumNo()) != null) {
             return Response.ok("Student already exists", MediaType.APPLICATION_JSON).build();
         }
-        students.add(student);
         return Response.ok(student,MediaType.APPLICATION_JSON).build();
 //        s.setSubjects(Arrays.asList(subjects));
 //        if(students.add(s)) return Response.ok(Response.Status.CREATED).build();
@@ -179,7 +165,7 @@ public class StudentResource {
     @POST
     @Path("hello")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response hello(@QueryParam("id") String id, @Context HttpServletRequest request)
+    public Response hello(@QueryParam("id") int id, @Context HttpServletRequest request)
     {
         HttpSession session = request.getSession();
         if(session == null)

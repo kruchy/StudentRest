@@ -13,6 +13,9 @@
         <element id="artifact" artifact-name="lab2-ejb:ejb exploded" />
       </element>
       <element id="directory" name="lib">
+        <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-jaxrs:1.9.2" />
+        <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.2" />
+        <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.2" />
         <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
         <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.2" />
         <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.8" />

@@ -3,7 +3,7 @@ package pl.edu.agh.kis.soa.resources;
 import com.google.gson.Gson;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
-import pl.edu.agh.kis.soa.resources.model.Student;
+import pl.edu.agh.kis.soa.Student;
 
 import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
@@ -51,7 +51,7 @@ public class Client {
             request.accept("application/json");
             Student s = new Student();
             Gson gson = new Gson();
-            s.setAlbumNo("6");
+            s.setAlbumNo(5);
             s.setFirstName("Krzysiek");
             s.setLastName("Misiak");
             request.body("application/json", gson.toJson(s).toString());
