@@ -7,6 +7,7 @@ public interface StudentDaoInt  {
 
     void saveStudent(Student s);
     Student getStudent(int albumNo);
-    void updateStudent(int albumNo,Student s);
+    void updateStudent(Student s);
+    boolean deleteStudent(int albumNo);
 
 }

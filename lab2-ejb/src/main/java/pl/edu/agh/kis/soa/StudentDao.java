@@ -27,11 +27,22 @@ public class StudentDao implements StudentDaoInt {
         return em.find(Student.class,albumNo);
     }
 
-    public void updateStudent(int albumNo,Student s)
+    public void updateStudent(Student s)
     {
-        Student tmp = getStudent(albumNo);
-        tmp.setFirstName(s.getFirstName());
-        em.merge(tmp);
+        em.merge(s);
     }
 
-}
+    @Override
+    public boolean deleteStudent(int albumNo) {
+        Student s = em.find(Student.class, albumNo);
+        if (s != null) {
+            em.remove(getStudent(albumNo));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    }
+

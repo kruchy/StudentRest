@@ -39,6 +39,24 @@ public class StudentResource {
 
 
 
+    @POST
+    @Path("setStudent")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setStudent(@QueryParam("id") int albumNo, @QueryParam("name")String firstName,@QueryParam("lastName") String lastName) {
+
+        Student s = studentDao.getStudent(albumNo);
+        if (s == null) {
+            s = new Student();
+            s.setFirstName(firstName);
+            s.setLastName(lastName);
+            studentDao.saveStudent(s);
+            return Response.ok(s, MediaType.APPLICATION_JSON).build();
+        }
+        return Response.status(Response.Status.CONFLICT).build();
+    }
+//        if(students.add(student) ) return Response.ok(true, MediaType.APPLICATION_JSON).build();
+//        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+
 	@GET
 	@Path("get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -55,53 +73,26 @@ public class StudentResource {
         }
 	}
 
-    @GET
-    @Path("setStudent")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response setStudent(Student student)//@QueryParam("id") String albumNo, @QueryParam("name")String firstName,@QueryParam("lastName") String lastName)
-    {
-        Student s = new Student();
-        s.setFirstName("Krzysiek");
-        s.setLastName("Misiak");
-        studentDao.saveStudent(s);
-        return Response.ok(s, MediaType.APPLICATION_JSON).build();
-
-//        if(students.add(student) ) return Response.ok(true, MediaType.APPLICATION_JSON).build();
-//        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-    }
-    @GET
-    @Path("upStudent")
-    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-    public Response delStudent(Student student) //@QueryParam("id") String albumNo,@QueryParam("name") String firstName,@QueryParam("lastName") String lastName, @QueryParam("subjects") String[] subjects )
-    {
-        Student s = new Student();
-        s.setLastName("Skrobacz");
-        s.setFirstName("Adrian");
-        studentDao.updateStudent(5,s);
-//        Student s = getStudent(student.getAlbumNo());
-//        if (s == null) return Response.status(Response.Status.NOT_FOUND).build();
-//        if(students.remove(s)) return Response.ok(true,MediaType.APPLICATION_JSON).build();
-      return Response.status(Response.Status.GONE).build();
-//
- }
-
     @POST
     @Path("addStudent")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response addStudent(Student student)//@QueryParam("id") String albumNo,@QueryParam("firstName")String firstName, @QueryParam("lastName")String lastName) //, @QueryParam("subjects") String[] subjects )
+    public Response addStudent(@QueryParam("firstName")String firstName, @QueryParam("lastName")String lastName)
     {
-        if(getStudent(student.getAlbumNo()) != null) {
-            return Response.ok("Student already exists", MediaType.APPLICATION_JSON).build();
-        }
-        return Response.ok(student,MediaType.APPLICATION_JSON).build();
-//        s.setSubjects(Arrays.asList(subjects));
-//        if(students.add(s)) return Response.ok(Response.Status.CREATED).build();
-//        else return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-       }
+        Student s = new Student();
+        s.setFirstName(firstName);
+        s.setLastName(lastName);
+        studentDao.saveStudent(s);
+        return Response.ok(s, MediaType.APPLICATION_JSON).build();
+    }
 
+    @DELETE
+    @Path("delStudent")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delStudent(@QueryParam("id")int albumNo)
+    {
 
+        return Response.ok(studentDao.deleteStudent(albumNo),MediaType.APPLICATION_JSON).build();
+
+    }
 
     @GET
     @Path("getpdf")
