@@ -19,7 +19,11 @@ public class StudentDao implements StudentDaoInt {
 
     public void saveStudent(Student s)
     {
-        em.persist(s);
+        Student tmp = em.find(Student.class,s.getAlbumNo());
+        if(tmp == null)
+        {
+            em.persist(s);
+        }
     }
 
     public Student getStudent(int albumNo)

@@ -74,8 +74,8 @@ public class StudentResource {
 	}
 
     @POST
-    @Path("addStudent")
-    public Response addStudent(@QueryParam("firstName")String firstName, @QueryParam("lastName")String lastName)
+    @Path("addStudent/{firstName}/{lastName}")
+    public Response addStudent(@PathParam("firstName")String firstName, @PathParam("lastName")String lastName)
     {
         Student s = new Student();
         s.setFirstName(firstName);
@@ -85,9 +85,9 @@ public class StudentResource {
     }
 
     @DELETE
-    @Path("delStudent")
+    @Path("delStudent/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delStudent(@QueryParam("id")int albumNo)
+    public Response delStudent(@PathParam("id")int albumNo)
     {
 
         return Response.ok(studentDao.deleteStudent(albumNo),MediaType.APPLICATION_JSON).build();

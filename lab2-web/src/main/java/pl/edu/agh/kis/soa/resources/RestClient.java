@@ -34,11 +34,15 @@ public class RestClient {
             Client client = Client.create();
             WebResource webResource;
             ClientResponse response;
-            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/get/5");
+            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/get/15");
             response = webResource.get(ClientResponse.class);
             printResponse(response);
 
-            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/delStudent");
+            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/addStudent/Andrzej/Golota");
+            webResource.post();
+
+
+            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/delStudent/5");
             webResource.queryParam("id","5");
             webResource.delete();
 
