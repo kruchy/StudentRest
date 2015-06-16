@@ -74,14 +74,16 @@ public class StudentResource {
 	}
 
     @POST
-    @Path("addStudent/{firstName}/{lastName}")
-    public Response addStudent(@PathParam("firstName")String firstName, @PathParam("lastName")String lastName)
+    @Path("addStudent")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addStudent(Student s)//@QueryParam("firstName")String firstName,@QueryParam("lastName") String lastName)
     {
-        Student s = new Student();
-        s.setFirstName(firstName);
-        s.setLastName(lastName);
+//        Student s = new Student();
+//        s.setFirstName(firstName);
+//        s.setLastName(lastName);
         studentDao.saveStudent(s);
-        return Response.ok(s, MediaType.APPLICATION_JSON).build();
+//        return Response.ok(s, MediaType.APPLICATION_JSON).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @DELETE

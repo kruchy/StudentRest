@@ -1,5 +1,6 @@
 package pl.edu.agh.kis.soa.resources;
 
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -38,12 +39,16 @@ public class RestClient {
             response = webResource.get(ClientResponse.class);
             printResponse(response);
 
-            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/addStudent/Andrzej/Golota");
-            webResource.post();
+            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/addStudent");
+            Student s = new Student();
+            s.setFirstName("Andrzej");
+            s.setLastName("Golota");
+            String input = new Gson().toJson(s);
+                 response = webResource.type("application/json").post(ClientResponse.class,input);
+            printResponse(response);
 
 
-            webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/delStudent/5");
-            webResource.queryParam("id","5");
+        webResource = client.resource("http://localhost:8080/lab2-web/rest/rest/delStudent/5");
             webResource.delete();
 
 
@@ -51,6 +56,7 @@ public class RestClient {
 
     public static void printResponse(ClientResponse response) {
         String line = "";
+        System.out.println(response.getStatus());
         System.out.println(response.getEntity(String.class));
     }
 
